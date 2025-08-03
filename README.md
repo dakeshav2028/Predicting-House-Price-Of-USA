@@ -107,14 +107,6 @@ The **Linear Regression model** emerged as the top performer with:
 
 This suggests that house prices in this dataset follow relatively linear relationships with the selected features, making simpler models more effective than complex ensemble methods.
 
-## 🔮 Future Improvements
-
-- **Feature Engineering**: Add more location-based features or property amenities
-- **Data Augmentation**: Incorporate additional datasets for better training
-- **Advanced Models**: Experiment with XGBoost, neural networks, or ensemble methods
-- **Cross-validation**: Implement k-fold cross-validation for robust model evaluation
-- **Hyperparameter Tuning**: Optimize model parameters for better performance
-
 ## 🤝 Contributing
 
 Feel free to fork this project and submit pull requests for improvements. Areas for contribution:
