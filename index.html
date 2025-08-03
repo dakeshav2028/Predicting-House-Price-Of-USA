@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .row {
+            display: flex;
+            gap: 15px;
+        }
+        .col {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏠 House Price Predictor</h1>
+        <p>Enter the house details below to get an estimated price prediction.</p>
+        
+        <form id="predictionForm">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="bedrooms">Bedrooms:</label>
+                        <input type="number" id="bedrooms" name="bedrooms" min="1" max="10" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="bathrooms">Bathrooms:</label>
+                        <input type="number" id="bathrooms" name="bathrooms" min="0.5" max="8" step="0.25" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="sqft_living">Living Area (sqft):</label>
+                        <input type="number" id="sqft_living" name="sqft_living" min="300" max="15000" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="sqft_above">Above Ground (sqft):</label>
+                        <input type="number" id="sqft_above" name="sqft_above" min="300" max="15000" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="sqft_basement">Basement (sqft):</label>
+                        <input type="number" id="sqft_basement" name="sqft_basement" min="0" max="5000" value="0">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="floors">Floors:</label>
+                        <select id="floors" name="floors" required>
+                            <option value="1">1</option>
+                            <option value="1.5">1.5</option>
+                            <option value="2">2</option>
+                            <option value="2.5">2.5</option>
+                            <option value="3">3</option>
+                            <option value="3.5">3.5</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="waterfront">Waterfront:</label>
+                        <select id="waterfront" name="waterfront" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="view">View Rating (0-4):</label>
+                        <select id="view" name="view" required>
+                            <option value="0">0 - No View</option>
+                            <option value="1">1 - Fair</option>
+                            <option value="2">2 - Average</option>
+                            <option value="3">3 - Good</option>
+                            <option value="4">4 - Excellent</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="condition">Condition (1-5):</label>
+                        <select id="condition" name="condition" required>
+                            <option value="1">1 - Poor</option>
+                            <option value="2">2 - Fair</option>
+                            <option value="3">3 - Average</option>
+                            <option value="4">4 - Good</option>
+                            <option value="5">5 - Very Good</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="house_age">House Age (years):</label>
+                        <input type="number" id="house_age" name="house_age" min="0" max="120" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="city">City:</label>
+                        <select id="city" name="city" required>
+                            <option value="">Select City</option>
+                            <option value="Seattle">Seattle</option>
+                            <option value="Bellevue">Bellevue</option>
+                            <option value="Redmond">Redmond</option>
+                            <option value="Kent">Kent</option>
+                            <option value="Shoreline">Shoreline</option>
+                            <option value="Renton">Renton</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="statezip">State & ZIP:</label>
+                        <select id="statezip" name="statezip" required>
+                            <option value="">Select ZIP</option>
+                            <option value="WA 98001">WA 98001</option>
+                            <option value="WA 98002">WA 98002</option>
+                            <option value="WA 98008">WA 98008</option>
+                            <option value="WA 98033">WA 98033</option>
+                            <option value="WA 98042">WA 98042</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="has_been_renovated">Has Been Renovated:</label>
+                <select id="has_been_renovated" name="has_been_renovated" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <button type="submit">🔮 Predict House Price</button>
+        </form>
+
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        document.getElementById('predictionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = new FormData(e.target);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                // Convert numeric fields to numbers
+                if (['bedrooms', 'bathrooms', 'sqft_living', 'sqft_above', 'sqft_basement', 
+                     'floors', 'waterfront', 'view', 'condition', 'house_age', 'has_been_renovated'].includes(key)) {
+                    data[key] = parseFloat(value);
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            // Show loading state
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = '⏳ Calculating prediction...';
+            
+            // Make prediction request
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `🎉 Predicted House Price: <strong>${result.prediction}</strong>`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = `❌ Error: ${result.error}`;
+                }
+            })
+            .catch(error => {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `❌ Error: ${error.message}`;
+            });
+        });
+    </script>
+</body>
+</html>
