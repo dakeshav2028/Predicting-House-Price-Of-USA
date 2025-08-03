@@ -124,5 +124,3 @@ Feel free to fork this project and submit pull requests for improvements. Areas 
 - Performance optimization
  
 *This project demonstrates practical application of machine learning for real estate price prediction, showcasing data preprocessing, model comparison, and performance evaluation techniques.*
-
-[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/84573671/5e9c441b-710b-414a-a8ee-c4c5ef6f92d4/house_price_prediction.
