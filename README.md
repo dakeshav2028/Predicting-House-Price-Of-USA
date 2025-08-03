@@ -116,3 +116,8 @@ Feel free to fork this project and submit pull requests for improvements. Areas 
 - Performance optimization
  
 *This project demonstrates practical application of machine learning for real estate price prediction, showcasing data preprocessing, model comparison, and performance evaluation techniques.*
+
+##  Output: 
+
+<img width="1908" height="995" alt="Image" src="https://github.com/user-attachments/assets/de8c4a19-4b5c-4708-a7f4-11fdb665bab6" />
+
